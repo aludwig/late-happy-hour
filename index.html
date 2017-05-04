@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html xmlns="https://www.w3.org/1999/xhtml">
+<head>
+	<title>Late Happy Hour</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="inc/jquery.mobile-1.4.5/jquery.mobile-1.4.5.min.css">
+    <link rel="stylesheet" href="inc/css-styles.css">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="icon" type="image/png" href="img/latehappyhour-favicon.png" />
+    <script src="inc/jquery-1.12.2.min.js"></script>
+    <link href='http://fonts.googleapis.com/css?family=Roboto+Slab' rel='stylesheet' type='text/css'>
+</head>
+<body>
+    <div data-role="page" id="page-home" data-theme="b">  <!--------------  HOME PAGE  -------------->
+    	<!--<div class="bg-overlay"></div>-->
+        <div data-role="main" class="ui-content" data-position-fixed="true">
+        	<object data="img/latehappyhour-.svg" type="image/svg+xml" id="" title="Late Happy Hour" class="logo shadow">
+        		<img src="img/latehappyhour.png" width="600" height="150" alt="Late Happy Hour" title="Late Happy Hour" class="logo" />
+        	</object>
+            <h1>Drink and dining deals available until 8pm or later.</h1>
+            	<div class="ui-grid-a ui-responsive">
+            		<div class="ui-block-a">
+						<script>
+                            $.ajax({url: "inc/inc-days.php", success: function(result) {  //  Load days
+                                $( "#container-days" ).html(result);  //  Load cities into container div
+                                $( "#container-days" ).trigger( "create" );  //  Refresh
+                            }});
+                        </script>
+                        <div id="container-days"></div>
+					</div>
+                    <div class="ui-block-b">
+                        <script>
+                            $.ajax({url: "inc/inc-city.php", success: function(result) {  //  Load city list ("Schedules" in Whenhub)
+                                $( "#container-cities" ).html(result);  //  Load cities into container div
+                                $( "#container-cities" ).trigger( "create" );  //  Refresh
+                            }});
+                        </script>
+                        <div id="container-cities"></div>
+					</div>
+				</div>
+                <input type="button" value="Cheers!" id="btn-search">
+        </div>
+        <div data-role="footer" data-position="fixed">
+            <p><a href="#page-about" data-transition="slide" data-direction="reverse">About</a></p>
+        </div>
+    </div>
+    <div data-role="page" id="page-list" data-theme="b">  <!--------------  LIST PAGE  -------------->
+        <div data-role="header">
+            <h1 id="headermessage">&nbsp;</h1>
+            <a href="#page-home" data-rel="back" data-icon="arrow-l" data-iconpos="notext" class="ui-btn-right" data-direction="reverse"></a>
+        </div>
+    	<!--<div class="bg-overlay"></div>-->
+        <div data-role="main" class="ui-content" data-position-fixed="true">
+            <div id="container-list">
+                <img src="img/ajax-loader.gif" class="ajax-loader" />
+                <p>If this doesn't load within a few seconds, please <a href="#page-home" data-transition="slide" data-direction="reverse">try again</a>.</p>
+            </div>
+        </div>
+    </div>
+    <div data-role="page" id="page-details" data-theme="b">  <!--------------  DETAILS PAGE  -------------->
+        <div data-role="header">
+            <h1 id="headermessage">&nbsp;</h1>
+            <a href="#page-home" data-rel="back" data-icon="arrow-l" data-iconpos="notext" class="ui-btn-right" data-direction="reverse"></a>
+        </div>
+    	<!--<div class="bg-overlay"></div>-->
+        <div data-role="main" class="ui-content" data-position-fixed="true">
+            <div id="container-details">
+                <img src="img/ajax-loader.gif" class="ajax-loader" />
+                <p>If this doesn't load within a few seconds, please <a href="#page-home" data-transition="slide" data-direction="reverse">try again</a>.</p>
+            </div>
+        </div>
+    </div>
+    <div data-role="page" id="page-about" data-theme="b">
+        <div data-role="header">
+            <h1 id="headermessage">&nbsp;</h1>
+            <a href="#page-home" data-icon="arrow-r" data-iconpos="notext" class="ui-btn-right" data-transition="slide"></a>
+        </div>
+        <div data-role="main" class="ui-content" data-position-fixed="true">
+            <h2>Deals for Night Owls</h2>
+            <p>Not everyone has a schedule which allows them time to take advantage of traditional Happy Hours.</p>
+            <p>For those frugal folks whose work day ends later than average, there is Late Happy Hour.</p>
+            <hr />
+            <p>Powered by <a href="http://whenhub.com" data-rel="external" target="_blank">WhenHub</a>, programmed by <a href="http://www.linkedin.com/in/ludwigaaron" data-rel="external" target="_blank">Aaron</a>.</p>
+            <p>"Write drunk, edit sober" - Earnest Hemmingway.</p>
+        </div>
+    </div>
+</body>
+<script src="inc/js-functions.js"></script>
+<script src="inc/jquery.mobile-1.4.5/jquery.mobile-1.4.5.min.js"></script>  <!--  JQM library  -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-52772185-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+</html>

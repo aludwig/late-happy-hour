@@ -1,0 +1,87 @@
+html, body { height: 100%; margin: 0; padding: 0; }
+h1 {
+    text-align: center;
+	font-size: 1.4em;
+	margin: 20px auto 20px auto;
+}
+h2, h3, h4 {
+	color: #ebe0cf;
+}
+h1, h2, h3, h4 {
+	font-family: Roboto Slab, serif;
+}
+h1, h2, h4, p {
+	text-align: center;
+}
+h4 {
+	margin: 0 auto -10px auto;
+	padding: 0;
+	font-size: 1.125em;
+}
+.ajax-loader {
+	display: block;
+	margin: auto;
+}
+hr {
+    border: none;
+    height: 1px;
+    color: #666; /* old IE */
+    background-color: #666; /* Modern Browsers */
+}
+.logo {
+	width: 100%;
+	max-width: 600px;
+	height: auto;
+	display: block;
+    margin: 20px auto 0 auto;
+}
+.shadow {
+    -webkit-filter: drop-shadow( 1px 1px 1px #000 );
+            filter: drop-shadow( 1px 1px 1px #000 ); /* Same syntax as box-shadow, except 
+                                                       for the spread property */
+}
+.image-googlemap {
+	float: left;
+}
+.image-yelp {
+	float: right;
+}
+.image-yelp, .image-googlemap {
+	width: 100%;
+    max-width: 250px;
+    height: auto;
+    display: block;
+	margin: 10px auto 20px auto;
+}
+.disclaimer {
+	font-size: .777em;
+}
+
+.bg-overlay {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	background-image: url("../img/bg.png");
+}
+a.ui-link {
+	color: #ebe0cf !important;
+}
+#page-home, #page-list, #page-details, #page-about {
+	background:#47454b;	
+}
+#listitems p {
+    display: inline;
+}
+
+/*
+#main-loading {
+    display: block;
+    margin: 0 auto;
+}
+.ui-header .ui-title {
+    margin-right: 10%;
+    margin-left: 10%;
+}
+*/
