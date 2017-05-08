@@ -26,8 +26,7 @@ for( $i = 0; $i < count( $jsondata_events ); $i++ ){
         $end = utcconversion( $jsondata_events[$i]->when->endDate );
     }
     
-    $daysavailable = $jsondata_events[$i]->when->recurrenceRule;
-    $daysavailable = substr( strrchr( $daysavailable, '=' ), 1 );
+    
 	
 	$customfields = get_object_vars( $jsondata_events[$i]->customFieldData );  //  Get customFieldData (a different unique code for each city (Schedule)
 	foreach ( $customfields as $key => $value ) {
@@ -47,6 +46,13 @@ for( $i = 0; $i < count( $jsondata_events ); $i++ ){
 		echo '<h2>' . $name . '</h2>';
 		echo $description;
         
+		$daysavailable = $jsondata_events[$i]->when->recurrenceRule;
+		//$daysavailable = substr( strrchr( $daysavailable, 'BYDAY=' ), 1 );
+		$daysavailable = substr( strrchr( $daysavailable, 'BYDAY=' ), 6 );  //  Pair down to BYDAY's
+		if ( strpos ( $daysavailable, ';' ) ) {  //  After BYDAY's, sometimes there's ";WKST=SU".  If so, trim it off
+			$daysavailable = substr( $daysavailable, 0, strpos( $daysavailable, ';' ) );
+		}
+		
         $array_daysavailable = explode( ',', $daysavailable );  //  Put available days into an array
         for ( $a = 0; $a <= count( $array_daysavailable ); $a++ ) {  //  Loop through available days
             for ( $w = 0; $w <= count( $days ); $w++ ) {  //  Loop through all days of the week
@@ -88,7 +94,7 @@ for( $i = 0; $i < count( $jsondata_events ); $i++ ){
         echo '<p>Is this deal no longer valid?  Got a hot tip on a great Late Happy Hour deal that I\'ve missed? <a href="mailto:aaron@latehappyhour.com">Let me know</a>!</p>';
         echo '<hr />
         <p>Don\'t drink &amp; drive! Use promo code <a href="https://get.uber.com/invite/uber-happyhour" data-rel="external" target="_blank">UBER-HAPPYHOUR</a> to claim your FREE first ride with Uber!</p>';
-		echo '<p class="disclaimer">Photo courtesy of <a href="' . $link_yelp . '" data-rel="external" target="_blank">Yelp</a>.</p>';
+		echo '<p class="disclaimer">Photo courtesy of <a href="' . $link_yelp . '" data-rel="external" target="_blank">Yelp</a>. Always call to confirm that deals are still active before heading to the location!</p>';
     }
 	
 }
