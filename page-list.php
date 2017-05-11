@@ -26,7 +26,13 @@ for( $i = 0; $i < count( $jsondata_events ); $i++ ){
         $end = utcconversion( $jsondata_events[$i]->when->endDate );  //  End time has been specified
     }
 	
-    if ( strpos( substr( $days, strripos( $days, '=')), $day ) !== false ) {  //  Check to see if day ("SU", "MO", etc) matches up with selected day
+	
+	$daysavailable = substr( strrchr( $days, 'BYDAY=' ), 6 );  //  Pair down to BYDAY's
+	if ( strpos ( $daysavailable, ';' ) ) {  //  After BYDAY's, sometimes there's ";WKST=SU".  If so, trim it off
+		$daysavailable = substr( $daysavailable, 0, strpos( $daysavailable, ';' ) );
+	}	
+    //if ( strpos( substr( $days, strripos( $days, 'BYDAY=')), $day ) !== false ) {  //  Check to see if day ("SU", "MO", etc) matches up with selected day
+	if ( strpos( $daysavailable, $day ) !== false ) {  //  Check to see if day ("SU", "MO", etc) matches up with selected day
 		$itemcount++;
         if ( $itemcount == 1 ){  //  At least one item is available, so open ul tag:
             echo '<ul data-role="listview" data-inset="true" id="listitems">';
